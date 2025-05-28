@@ -219,6 +219,12 @@
                          📅 Deadline: {{ \Carbon\Carbon::parse($task->due_date)->format('d M Y') }}
                        </div>
 
+                       @if ($task->completed_at)
+                       <p class="text-success small">✅ Selesai: {{ \Carbon\Carbon::parse($task->completed_at)->format('d M Y') }}</p>
+                       @endif
+
+
+
                       <div class="mt-2" style="color: #4a5568;">
                         <strong>📝 Deskripsi:</strong>
                         <p style="margin: 0;">{{ $task->description ?: 'Tidak ada deskripsi.' }}</p>

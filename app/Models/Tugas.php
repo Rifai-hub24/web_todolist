@@ -10,7 +10,7 @@ class Tugas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'priority', 'due_date', 'is_done' , 'description'];
+    protected $fillable = ['user_id', 'title', 'priority', 'due_date', 'is_done' , 'description' , 'completed_at'];
 
     protected $attributes = [
         'is_done' => false, // pastikan tanpa tanda kutip

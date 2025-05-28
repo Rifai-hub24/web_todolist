@@ -82,15 +82,17 @@ class TugasController extends Controller
         $task = Tugas::findOrFail($id);
         $this->authorizeTask($task);
 
-        // Hanya bisa update dari false ke true (tidak bisa uncheck jika sudah true)
-        if (!$task->is_done && filter_var($request->is_done, FILTER_VALIDATE_BOOLEAN)) {
-            $task->is_done = true;
-            $task->save();
+        $isDone = filter_var($request->is_done, FILTER_VALIDATE_BOOLEAN);
 
-            return response()->json(['success' => true, 'status' => 'checked']);
-        }
+        $task->is_done = $isDone;
+        $task->completed_at = $isDone ? now() : null;
+        $task->save();
 
-        return response()->json(['success' => false, 'message' => 'Task already completed or invalid request']);
+        return response()->json([
+            'success' => true,
+            'status' => $isDone ? 'checked' : 'unchecked',
+            'completed_at' => $task->completed_at,
+        ]);
     }
 
     protected function authorizeTask($tugas)
