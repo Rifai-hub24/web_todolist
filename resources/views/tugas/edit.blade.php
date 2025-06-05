@@ -85,4 +85,20 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const today = new Date().toISOString().split('T')[0];
+        const dueDateInput = document.getElementById('due_date');
+
+        // Atur minimal tanggal hari ini
+        dueDateInput.setAttribute('min', today);
+
+        // Jika tanggal sebelumnya lebih kecil dari hari ini, peringatkan user
+        if (dueDateInput.value && dueDateInput.value < today) {
+            alert("Tanggal deadline tidak boleh sebelum hari ini. Harap ubah.");
+        }
+    });
+</script>
+
 @endsection

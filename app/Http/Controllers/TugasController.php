@@ -32,7 +32,7 @@ class TugasController extends Controller
         $request->validate([
             'title' => 'required',
             'priority' => 'required|in:low,medium,high',
-            'due_date' => 'required|date',
+            'due_date' => 'required|date|after_or_equal:today', // Tambahkan ini
             'description' => 'nullable|string',
         ]);
 
@@ -61,7 +61,7 @@ class TugasController extends Controller
         $request->validate([
             'title' => 'required',
             'priority' => 'required|in:low,medium,high',
-            'due_date' => 'required|date',
+            'due_date' => 'required|date|after_or_equal:today', // Tambahkan ini
             'description' => 'nullable|string',
         ]);
 
